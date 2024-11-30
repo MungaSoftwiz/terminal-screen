@@ -3,6 +3,27 @@
 This project implements a terminal screen renderer using OCaml. It parses a stream of binary-encoded commands and renders graphical instructions in a terminal. This is achieved by interpreting the commands to setup a virtual screen, draw characters, lines, and text, manipulate the cursor, and clear the screen.
 
 ---
+### Below are the links to the proposal  and corresponding UML Diagrams:
+
+## Project's proposal
+
+Below is the project's proposal in PDF format.
+
+[Project Proposal (PDF)](./docs/Terminal-Screen-Initial-Proposal.pdf)
+
+## Use Case Diagram
+
+Below is the system architecture diagram in PDF format:
+
+[Use Case Diagram (PDF)](./docs/Terminal-Screen-Use-Case-Diagram.pdf)
+
+## Sequence Diagram
+
+Below is the sequence diagram in PDF format:
+
+[Sequence Diagram (PDF)](./docs/Terminal-Screen-Sequence-Diagram.pdf)
+
+---
 
 ## Features
 - **Screen Setup**: Initialize a virtual terminal screen with customizable dimensions and color modes.
@@ -98,3 +119,6 @@ dune runtest
 - Renderer Module: Draws to the terminal using the `notty` library.
 #### Test-Driven Development (TDD)
 - Each module is implemented alongside unit tests using the `alcotest` framework.
+
+## Authors
+Boniface Munga - [Github](https://github.com/MungaSoftwiz) / [X](https://X.com/MungaSoftwiz)
