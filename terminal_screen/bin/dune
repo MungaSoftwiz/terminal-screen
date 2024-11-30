@@ -1,0 +1,4 @@
+(executable
+ (public_name terminal_screen)
+ (name main)
+ (libraries terminal_screen))
