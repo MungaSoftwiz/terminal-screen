@@ -16,7 +16,7 @@ depends: [
   "alcotest"
   "fmt"
   "cmdliner" {>= "1.1.0"}
-  "ocamlformat" {with-dev-setup & = "0.26.2"}
+  "ocamlformat" {= "0.26.2"}
   "odoc" {with-doc}
 ]
 build: [
