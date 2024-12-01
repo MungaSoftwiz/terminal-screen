@@ -26,6 +26,8 @@
     (>= 5.2.0)
     (< 5.3.0)))
   fmt
+  (cmdliner
+   (>= 1.1.0))
   (ocamlformat
    (and
     :with-dev-setup
