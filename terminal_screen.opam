@@ -12,7 +12,9 @@ doc: "https://url/to/documentation"
 bug-reports: "https://github.com/MungaSoftwiz/terminal-screen/issues"
 depends: [
   "dune" {>= "3.17"}
-  "ocaml"
+  "ocaml" {>= "5.2.0" & < "5.3.0"}
+  "fmt"
+  "ocamlformat" {with-dev-setup & = "0.26.2"}
   "odoc" {with-doc}
 ]
 build: [
