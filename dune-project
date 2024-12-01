@@ -25,6 +25,7 @@
    (and
     (>= 5.2.0)
     (< 5.3.0)))
+  alcotest
   fmt
   (cmdliner
    (>= 1.1.0))
