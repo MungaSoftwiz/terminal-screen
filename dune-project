@@ -18,8 +18,20 @@
 (package
  (name terminal_screen)
  (synopsis "Terminal Screen")
- (description "Program reads bytes supplied to a stream and generated a graphical representation of the bytes.")
- (depends ocaml)
+ (description
+  "Program reads bytes supplied to a stream and generated a graphical representation of the bytes.")
+ (depends
+  (ocaml
+   (and
+    (>= 5.2.0)
+    (< 5.3.0)))
+  fmt
+  (cmdliner
+   (>= 1.1.0))
+  (ocamlformat
+   (and
+    :with-dev-setup
+    (= 0.26.2))))
  (tags
   ("cli program" "OCaml")))
 
