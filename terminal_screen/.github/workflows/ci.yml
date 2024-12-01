@@ -34,7 +34,9 @@ jobs:
           opam-depext: true
 
       - name: Install Dependencies
-        run: opam install . --deps-only -y
+        run: |
+          opam install . --deps-only -y
+          eval $(opam env)
 
       - name: Build Project
         run: dune build
