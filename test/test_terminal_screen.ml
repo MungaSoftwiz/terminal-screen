@@ -14,5 +14,3 @@ let test_cases = [ ("Test Setup Screen", `Quick, test_setup_screen) ]
 let () =
   Printf.printf "Running tests...\n";
   Alcotest.run "Terminal Screen" [ ("Screen Setup", test_cases) ]
-(* test_setup_screen ();
-   Printf.printf "All tests passed!\n" *)
