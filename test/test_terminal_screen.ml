@@ -9,6 +9,10 @@ let test_setup_screen () =
   assert (state.height = 30);
   match state.colour_mode with SixteenColours -> () | _ -> assert false
 
+let test_cases = [ ("Test Setup Screen", `Quick, test_setup_screen) ]
+
 let () =
-  test_setup_screen ();
-  Printf.printf "All tests passed!\n"
+  Printf.printf "Running tests...\n";
+  Alcotest.run "Terminal Screen" [ ("Screen Setup", test_cases) ]
+(* test_setup_screen ();
+   Printf.printf "All tests passed!\n" *)
