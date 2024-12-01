@@ -39,6 +39,9 @@ jobs:
       - name: Build Project
         run: dune build
 
+      - name: Set up Opam Environment
+        run: eval $(opam env)
+
       - name: Run Tests
         run: dune runtest
 
