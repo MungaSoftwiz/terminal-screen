@@ -1,2 +1,4 @@
 (test
- (name test_terminal_screen))
+ (name test_terminal_screen)
+ (modules test_terminal_screen)
+ (libraries terminal_screen))

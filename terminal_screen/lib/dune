@@ -1,2 +1,3 @@
 (library
- (name terminal_screen))
+ (name terminal_screen)
+ (public_name terminal_screen))
