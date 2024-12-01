@@ -34,7 +34,10 @@ jobs:
           opam-depext: true
 
       - name: Install Dependencies
-        run: opam install . --deps-only -y
+        
+        run: |
+          opam install dune -y
+          opam install . --deps-only -y
 
       - name: Build Project
         run: dune build
