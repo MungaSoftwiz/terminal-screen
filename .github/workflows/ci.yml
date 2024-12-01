@@ -13,6 +13,10 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          opam install dune -y
+          opam install . --deps-only -y
       - name: Set up Opam Environment
         run: eval $(opam env)
       - name: Build Project
