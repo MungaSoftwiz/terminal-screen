@@ -1,4 +1,4 @@
 (executable
- (public_name terminal_screen)
+ (public_name terminal_screen_app)
  (name main)
  (libraries terminal_screen))
