@@ -1,5 +1,6 @@
 open Terminal_screen.Screen
 open Terminal_screen.Draw_character
+open Terminal_screen.Draw_line
 
 let () =
   (* Setup the screen *)
@@ -19,9 +20,9 @@ let () =
     (* Draw characters on the screen *)
     let draw_data_list =
       [
-        [| 10; 5; 0x01; Char.code 'A' |];
+        [| 10; 15; 0x01; Char.code 'A' |];
         [| 15; 10; 0x02; Char.code 'B' |];
-        [| 30; 5; 0x03; Char.code 'C' |];
+        [| 30; 15; 0x03; Char.code 'C' |];
       ]
     in
     List.iter
@@ -29,6 +30,22 @@ let () =
         try draw_character draw_data
         with Failure msg -> Printf.printf "Error: %s\n" msg)
       draw_data_list;
+
+    (* Draw lines on the screen *)
+    let line_data_list =
+      [
+        [| 5; 5; 20; 5; 0x01; Char.code '-' |];
+        [| 20; 10; 10; 20; 0x02; Char.code '|' |];
+        [| 30; 5; 50; 15; 0x03; Char.code '/' |];
+        [| 50; 15; 40; 20; 0x04; Char.code '*' |];
+        (* [| 0; 24; 79; 24; 0x04; Char.code '*' |]; *)
+      ]
+    in
+    List.iter
+      (fun line_data ->
+        try draw_line line_data
+        with Failure msg -> Printf.printf "Error: %s\n" msg)
+      line_data_list;
 
     (* Display the screen buffer *)
     Printf.printf "Screen buffer:\n";
