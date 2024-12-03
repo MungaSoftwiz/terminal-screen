@@ -13,7 +13,7 @@ Below is the project's proposal in PDF format.
 
 ## Use Case Diagram
 
-Below is the system architecture diagram in PDF format:
+Below is the use case diagram in PDF format:
 
 [Use Case Diagram (PDF)](./docs/Terminal-Screen-Use-Case-Diagram.pdf)
 
@@ -22,6 +22,12 @@ Below is the system architecture diagram in PDF format:
 Below is the sequence diagram in PDF format:
 
 [Sequence Diagram (PDF)](./docs/Terminal-Screen-Sequence-Diagram.pdf)
+
+## Flowchart Diagram
+
+Below is a flowchart diagram in PDF format:
+
+[Flowchart Diagram (PDF)](./docs/Terminal-Screen-Flowchart-Diagram.pdf)
 
 ---
 
@@ -60,10 +66,11 @@ The program processes a binary input with the following structure:
 ## Project Structure
 
 ```
-terminal_screen/
+terminal-screen/
 ├── README.md
+├── bin/
+|   ├── main.ml
 ├── lib/
-│   ├── main.ml
 │   ├── *.ml
 │   ├── *.mli
 ├── test/
@@ -71,7 +78,8 @@ terminal_screen/
 ├── .gitignore
 ├── .ocamlformat
 ├── dune-project
-├── dune
+├── library.opam
+├── AUTHORS
 └── Makefile
 ```
 
@@ -80,11 +88,6 @@ terminal_screen/
 ## Getting Started
 
 ### Prerequisites
-- **OCaml**: Install via [opam](https://opam.ocaml.org/)
-- **Packages**: Install `dune`, `alcotest`, and `notty`
-  ```bash
-  opam install dune alcotest notty
-  ```
 
 ### Installation
 1. Clone the repository:
@@ -93,23 +96,35 @@ git clone https://github.com/yourusername/terminal_screen.git
 cd terminal_screen
 ```
 
-2. Build the project:
+2. Install dependencies:
 ```bash
-dune build
+sudo apt get opam
+opam install . --deps-only -y
 ```
 
-### Running the Program
-- To execute the program with a binary input file:
+3. Activate the environment:
+```bash
+eval $(opam env)
+```
+
+### Build the Program
+- To build the program in an executable:
 
 ```bash
-dune exec ./main.exe < input.bin
+opam exec -- dune build
+```
+### Running the Program
+- To execute the program:
+
+```bash
+dune exec terminal_screen_app
 ```
 
 ### Running Tests
 Execute all unit tests:
 
 ```bash
-dune runtest
+opam exec -- dune runtest
 ```
 
 ### Development Process
