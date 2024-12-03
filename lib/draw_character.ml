@@ -15,7 +15,6 @@ let draw_character data =
       failwith "Coordinates are out of bounds"
     else
       let screen_buffer = get_screen_buffer () in
-      (* Array.set (!screen_buffer).(y) (x) character; *)
       screen_buffer.(y).(x) <- character;
       Printf.printf "Drawing character '%c' at (%d, %d) with colour %d\n"
         character x y colour_index
