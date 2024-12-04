@@ -13,8 +13,12 @@ let draw_character data =
     let state = get_screen_state () in
     if x < 0 || x >= state.width || y < 0 || y >= state.height then
       failwith "Coordinates are out of bounds"
+    else if colour_index < 0 || colour_index >= Array.length state.palette then
+      failwith "Invalid colour index supplied"
     else
       let screen_buffer = get_screen_buffer () in
-      screen_buffer.(y).(x) <- character;
-      Printf.printf "Drawing character '%c' at (%d, %d) with colour %d\n"
-        character x y colour_index
+      screen_buffer.(y).(x) <- (character, colour_index);
+      let { r; g; b } = state.palette.(colour_index) in
+      Printf.printf
+        "Drawing character '%c' at (%d, %d) with colour %d (RGB: %d, %d, %d)\n"
+        character x y colour_index r g b

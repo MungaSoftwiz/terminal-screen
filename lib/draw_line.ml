@@ -16,6 +16,8 @@ let draw_line data =
       x1 < 0 || x1 >= state.width || y1 < 0 || y1 >= state.height || x2 < 0
       || x2 >= state.width || y2 < 0 || y2 >= state.height
     then failwith "Coordinates oare out of bounds"
+    else if colour_index < 0 || colour_index >= Array.length state.palette then
+      failwith "Invalid colour index supplied"
     else
       let screen_buffer = get_screen_buffer () in
       (* Bresenham's algorithm *)
@@ -24,9 +26,10 @@ let draw_line data =
       let sx = if x1 < x2 then 1 else -1 in
       let sy = if y1 < y2 then 1 else -1 in
       let rec draw x y err =
-        if x = x2 && y = y2 then screen_buffer.(y).(x) <- character
+        if x = x2 && y = y2 then
+          screen_buffer.(y).(x) <- (character, colour_index)
         else
-          let () = screen_buffer.(y).(x) <- character in
+          let () = screen_buffer.(y).(x) <- (character, colour_index) in
           let e2 = 2 * err in
           let next_x, next_y, next_err =
             if e2 > -dy then (x + sx, y, err - dy) else (x, y, err)
@@ -38,7 +41,8 @@ let draw_line data =
           draw next_x next_y next_err
       in
       draw x1 y1 (dx - dy);
+      let { r; g; b } = state.palette.(colour_index) in
       Printf.printf
-        "Drawing line from (%d, %d) to (%d, %d) with colour %d and character \
-         '%c'\n"
-        x1 y1 x2 y2 colour_index character
+        "Drawing line from (%d, %d) to (%d, %d) with colour %d (RGB: %d, %d, \
+         %d)and character '%c'\n"
+        x1 y1 x2 y2 colour_index r g b character
