@@ -13,15 +13,18 @@ let print_instructions command =
   | 0x2 ->
       Printf.printf
         "Draw Character (Command 0x2):\n\
-         - Enter 4 integers: x coordinate, y coordinate, colour index, and ASCII character code:\n\
-         - Example: 10 5 1 65 (to draw character 'A' at coordinates (10,5) with colour index 1)\n"
+         - Enter 4 integers: x coordinate, y coordinate, colour index, and \
+         ASCII character code:\n\
+         - Example: 10 5 1 65 (to draw character 'A' at coordinates (10,5) \
+         with colour index 1)\n"
   | 0x3 ->
       Printf.printf
         "Draw Line (Command 0x3):\n\
-         - Enter 6 integers: x1, y1 (starting coordinates), x2, y2 (ending coordinates), color index, and ASCII character code:\n\
-         - Example: 5 10 15 20 9 42 (to draw a line from (0,0) to (20,10) with colour index 9 using '*' character)\n"
-  | _ ->
-      Printf.printf "Unknown command. Please try again.\n"
+         - Enter 6 integers: x1, y1 (starting coordinates), x2, y2 (ending \
+         coordinates), color index, and ASCII character code:\n\
+         - Example: 5 10 15 20 9 42 (to draw a line from (0,0) to (20,10) with \
+         colour index 9 using '*' character)\n"
+  | _ -> Printf.printf "Unknown command. Please try again.\n"
 
 (* Function to parse and execute commands *)
 let execute_command command data =
@@ -54,11 +57,11 @@ let display_screen () =
     done
   with Failure msg -> Printf.printf "Error during screen setup: %s\n" msg
 
-
 (* Main function to process input *)
 let rec main () =
   Printf.printf
-    "Enter command (0x1 for setup, 0x2 for draw character, 0x3 for draw line, q to quit):\n";
+    "Enter command (0x1 for setup, 0x2 for draw character, 0x3 for draw line, \
+     q to quit):\n";
   let input = read_line () in
   if input = "q" then (
     Printf.printf "Exiting program.\n";
@@ -69,9 +72,12 @@ let rec main () =
       print_instructions command;
       Printf.printf "Enter data as space-separated integers:\n";
       Printf.printf "(@) ";
-      let data = read_line () |> String.split_on_char ' ' |> Array.of_list |> Array.map int_of_string in
+      let data =
+        read_line () |> String.split_on_char ' ' |> Array.of_list
+        |> Array.map int_of_string
+      in
       execute_command command data;
-      
+
       if command <> 0x1 then display_screen ();
       Printf.printf "Command executed successfully.\n";
       main ()

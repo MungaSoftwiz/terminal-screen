@@ -6,22 +6,38 @@ let monochrome_palette =
 
 let sixteen_palette =
   [|
-    { r = 0; g = 0; b = 0 }; (* Black *)
-    { r = 0; g = 0; b = 170 }; (* Blue *)
-    { r = 0; g = 170; b = 0 }; (* Green *)
-    { r = 0; g = 170; b = 170 }; (* Cyan *)
-    { r = 170; g = 0; b = 0 }; (* Red *)
-    { r = 170; g = 0; b = 170 }; (* Magenta *)
-    { r = 170; g = 85; b = 0 }; (* Brown *)
-    { r = 170; g = 170; b = 170 }; (* Light Gray *)
-    { r = 85; g = 85; b = 85 }; (* Dark Gray *)
-    { r = 85; g = 85; b = 255 }; (* Light Blue *)
-    { r = 85; g = 255; b = 85 }; (* Light Green *)
-    { r = 85; g = 255; b = 255 }; (* Light Cyan *)
-    { r = 255; g = 85; b = 85 }; (* Light Red *)
-    { r = 255; g = 85; b = 255 }; (* Light Magenta *)
-    { r = 255; g = 255; b = 85 }; (* Yellow *)
-    { r = 128; g = 128; b = 128 }; (* Gray *)
+    { r = 0; g = 0; b = 0 };
+    (* Black *)
+    { r = 0; g = 0; b = 170 };
+    (* Blue *)
+    { r = 0; g = 170; b = 0 };
+    (* Green *)
+    { r = 0; g = 170; b = 170 };
+    (* Cyan *)
+    { r = 170; g = 0; b = 0 };
+    (* Red *)
+    { r = 170; g = 0; b = 170 };
+    (* Magenta *)
+    { r = 170; g = 85; b = 0 };
+    (* Brown *)
+    { r = 170; g = 170; b = 170 };
+    (* Light Gray *)
+    { r = 85; g = 85; b = 85 };
+    (* Dark Gray *)
+    { r = 85; g = 85; b = 255 };
+    (* Light Blue *)
+    { r = 85; g = 255; b = 85 };
+    (* Light Green *)
+    { r = 85; g = 255; b = 255 };
+    (* Light Cyan *)
+    { r = 255; g = 85; b = 85 };
+    (* Light Red *)
+    { r = 255; g = 85; b = 255 };
+    (* Light Magenta *)
+    { r = 255; g = 255; b = 85 };
+    (* Yellow *)
+    { r = 128; g = 128; b = 128 };
+    (* Gray *)
   |]
 
 let two_fifty_six_palette = Array.init 256 (fun i -> { r = i; g = i; b = i })
