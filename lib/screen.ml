@@ -48,6 +48,8 @@ type screen_state = {
   colour_mode : colour_mode;
   is_initialized : bool;
   palette : colour array;
+  mutable cursor_x : int;
+  mutable cursor_y : int;
 }
 
 let screen =
@@ -58,6 +60,8 @@ let screen =
       colour_mode = Monochrome;
       is_initialized = false;
       palette = monochrome_palette;
+      cursor_x = 0;
+      cursor_y = 0;
     }
 
 let screen_buffer = ref [||]
@@ -75,6 +79,7 @@ let parse_colour_mode byte =
   | _ -> failwith "Invalid colour mode supplied"
 
 let get_screen_state () = !screen
+let set_screen_state new_state = screen := new_state
 
 let initialize_screen_buffer () =
   let state = get_screen_state () in
@@ -90,7 +95,16 @@ let setup_screen data =
     if width <= 0 || height <= 0 then
       failwith "Invalid screen dimensions supplied"
     else
-      screen := { width; height; colour_mode; is_initialized = true; palette };
+      screen :=
+        {
+          width;
+          height;
+          colour_mode;
+          is_initialized = true;
+          palette;
+          cursor_x = 0;
+          cursor_y = 0;
+        };
     initialize_screen_buffer ()
 
 let display_character character colour_index =
