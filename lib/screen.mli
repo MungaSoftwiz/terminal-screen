@@ -14,6 +14,8 @@ type screen_state = {
   is_initialized : bool;
       (** Indicates whether the screen has been initialized. *)
   palette : colour array;
+  mutable cursor_x : int;  (** The x-coordinate of the cursor. *)
+  mutable cursor_y : int;  (** The y-coordinate of the cursor. *)
 }
 (** Represents the state of the screen. *)
 
@@ -33,6 +35,12 @@ val get_screen_state : unit -> screen_state
 (** 
   Retrieves the current state of the screen.
   @return The current state of the screen as a [screen_state] record.
+*)
+
+val set_screen_state : screen_state -> unit
+(** 
+  Sets the state of the screen.
+  @param new_state The new state of the screen.
 *)
 
 val get_screen_buffer : unit -> (char * int) array array

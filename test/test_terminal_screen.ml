@@ -2,6 +2,7 @@ open Terminal_screen.Screen
 open Terminal_screen.Draw_character
 open Terminal_screen.Draw_line
 open Terminal_screen.Render_text
+open Terminal_screen.Move_cursor
 
 let test_setup_screen () =
   let test_data = [| 100; 30; 0x01 |] in
@@ -69,12 +70,38 @@ let test_render_text () =
       assert (colour_mode = 0x01))
     expected_text
 
+let test_move_cursor () =
+  let test_data = [| 100; 30; 0x01 |] in
+  setup_screen test_data;
+
+  let move_data = [| 10; 5 |] in
+  move_cursor move_data;
+
+  let state = get_screen_state () in
+  assert (state.cursor_x = 10);
+  assert (state.cursor_y = 5);
+
+  let move_data_2 = [| 15; 20 |] in
+  move_cursor move_data_2;
+
+  let state_2 = get_screen_state () in
+  assert (state_2.cursor_x = 15);
+  assert (state_2.cursor_y = 20);
+
+  try
+    move_cursor [| 150; 35 |];
+    assert false (* This should not be reached *)
+  with
+  | Failure _ -> ()
+  | _ -> assert false
+
 let test_cases =
   [
     ("Test Setup Screen", `Quick, test_setup_screen);
     ("Test Draw Character", `Quick, test_draw_character);
     ("Test Draw Line", `Quick, test_draw_line);
     ("Test Render Text", `Quick, test_render_text);
+    ("Test Move Cursor", `Quick, test_move_cursor);
   ]
 
 let () =
