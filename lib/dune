@@ -1,4 +1,10 @@
 (library
  (name terminal_screen)
  (public_name terminal_screen)
- (modules Screen Draw_character Draw_line Render_text Terminal_screen))
+ (modules
+  Screen
+  Draw_character
+  Draw_line
+  Render_text
+  Move_cursor
+  Terminal_screen))
