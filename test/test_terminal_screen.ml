@@ -1,6 +1,7 @@
 open Terminal_screen.Screen
 open Terminal_screen.Draw_character
 open Terminal_screen.Draw_line
+open Terminal_screen.Render_text
 
 let test_setup_screen () =
   let test_data = [| 100; 30; 0x01 |] in
@@ -42,11 +43,38 @@ let test_draw_line () =
   assert (char_at_15_20 = '-');
   assert (colour_at_15_20 = 42)
 
+let test_render_text () =
+  let test_data = [| 100; 30; 0x02 |] in
+  setup_screen test_data;
+
+  render_text
+    [|
+      5;
+      10;
+      0x01;
+      Char.code 'H';
+      Char.code 'e';
+      Char.code 'l';
+      Char.code 'l';
+      Char.code 'o';
+    |];
+
+  let screen_buffer = get_screen_buffer () in
+  let expected_text = [ 'H'; 'e'; 'l'; 'l'; 'o' ] in
+  List.iteri
+    (fun i char ->
+      let screen_x = 5 + i in
+      let char_at_x_y, colour_mode = screen_buffer.(10).(screen_x) in
+      assert (char_at_x_y = char);
+      assert (colour_mode = 0x01))
+    expected_text
+
 let test_cases =
   [
     ("Test Setup Screen", `Quick, test_setup_screen);
     ("Test Draw Character", `Quick, test_draw_character);
     ("Test Draw Line", `Quick, test_draw_line);
+    ("Test Render Text", `Quick, test_render_text);
   ]
 
 let () =
