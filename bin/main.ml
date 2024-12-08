@@ -1,6 +1,7 @@
 open Terminal_screen.Screen
 open Terminal_screen.Draw_character
 open Terminal_screen.Draw_line
+open Terminal_screen.Render_text
 
 (* Function to print command instructions *)
 let print_instructions command =
@@ -24,6 +25,13 @@ let print_instructions command =
          coordinates), color index, and ASCII character code:\n\
          - Example: 5 10 15 20 9 42 (to draw a line from (0,0) to (20,10) with \
          colour index 9 using '*' character)\n"
+  | 0x4 ->
+      Printf.printf
+        "Render Text (Command 0x4):\n\
+         - Enter integers for x coordinate, y coordinate, colour index, \
+         followed by ASCII character codes:\n\
+         - Example 45 10 6 72 101 108 108 111 (to render 'Hello' at \
+         coordinates (45,10) with colour index 6)\n"
   | _ -> Printf.printf "Unknown command. Please try again.\n"
 
 (* Function to parse and execute commands *)
@@ -41,6 +49,10 @@ let execute_command command data =
       if Array.length data <> 6 then
         failwith "Invalid data length for draw line"
       else draw_line data
+  | 0x4 ->
+      if Array.length data < 4 then
+        failwith "Invalid data length for render text"
+      else render_text data
   | _ -> failwith "Unknown command"
 
 (* Function to display the screen *)
@@ -60,8 +72,10 @@ let display_screen () =
 (* Main function to process input *)
 let rec main () =
   Printf.printf
-    "Enter command (0x1 for setup, 0x2 for draw character, 0x3 for draw line, \
-     q to quit):\n";
+    "Enter command:\n\
+    \    (0x1 for setup, 0x2 for draw character,\n\
+    \    0x3 for draw line, 0x4 for render_text,\n\
+    \    q to quit):\n";
   let input = read_line () in
   if input = "q" then (
     Printf.printf "Exiting program.\n";
