@@ -25,8 +25,8 @@ let print_instructions command =
         "Draw Line (Command 0x3):\n\
          - Enter 6 integers: x1, y1 (starting coordinates), x2, y2 (ending \
          coordinates), color index, and ASCII character code:\n\
-         - Example: 5 10 15 20 9 42 (to draw a line from (0,0) to (20,10) with \
-         colour index 9 using '*' character)\n"
+         - Example: 5 10 15 20 9 42 (to draw a line from (5,10) to (15,20) \
+         with colour index 9 using '*' character)\n"
   | 0x4 ->
       Printf.printf
         "Render Text (Command 0x4):\n\
