@@ -7,4 +7,5 @@
   Draw_line
   Render_text
   Move_cursor
+  Draw_at_cursor
   Terminal_screen))
