@@ -29,12 +29,18 @@ Below is a flowchart diagram in PDF format:
 
 [Flowchart Diagram (PDF)](./docs/Terminal-Screen-Flowchart-Diagram.pdf)
 
+## MVP: Making Progress
+
+This section outlines the progress of the project as of 9/12/2024. Below is the document in PDF format:
+
+[MVP: Making Progress (PDF)](./docs/Terminal-Screen-MVP-Progress.pdf)
+
 ---
 
 ## Features
-- **Screen Setup**: Initialize a virtual terminal screen with customizable dimensions and color modes.
+- **Screen Setup**: Initialise a virtual terminal screen with customisable dimensions and colour modes.
 - **Draw Characters**: Place individual characters at specific coordinates.
-- **Draw Lines**: Render straight lines between two points with specified characters and colors.
+- **Draw Lines**: Render straight lines between two points with specified characters and colours.
 - **Render Text**: Display strings of text starting at a given position.
 - **Cursor Movement**: Move the cursor without rendering.
 - **Screen Clearing**: Reset the screen content.
@@ -52,12 +58,12 @@ The program processes a binary input with the following structure:
 ### Command Specifications
 | **Command** | **Code** | **Description**                                     | **Data Format**                                              |
 |-------------|----------|-----------------------------------------------------|--------------------------------------------------------------|
-| Setup Screen | `0x1`   | Initialize screen dimensions and color mode.        | `Byte 0`: Width, `Byte 1`: Height, `Byte 2`: Color Mode      |
-| Draw Character | `0x2` | Draw a character at specific coordinates.           | `Byte 0`: x, `Byte 1`: y, `Byte 2`: Color, `Byte 3`: ASCII   |
+| Setup Screen | `0x1`   | Initialise screen dimensions and colour mode.        | `Byte 0`: Width, `Byte 1`: Height, `Byte 2`: Colour Mode      |
+| Draw Character | `0x2` | Draw a character at specific coordinates.           | `Byte 0`: x, `Byte 1`: y, `Byte 2`: Colour, `Byte 3`: ASCII   |
 | Draw Line    | `0x3`   | Draw a line between two coordinates.                | `Byte 0-4`: Coordinates, `Byte 5`: Color, `Byte 6`: ASCII    |
-| Render Text  | `0x4`   | Display text starting at a given position.          | `Byte 0-2`: Position & Color, `Byte 3-n`: ASCII text         |
+| Render Text  | `0x4`   | Display text starting at a given position.          | `Byte 0-2`: Position & Colour, `Byte 3-n`: ASCII text         |
 | Cursor Move  | `0x5`   | Move cursor to a specific position.                 | `Byte 0`: x, `Byte 1`: y                                     |
-| Draw at Cursor | `0x6` | Draw at the current cursor position.                | `Byte 0`: ASCII, `Byte 1`: Color                             |
+| Draw at Cursor | `0x6` | Draw at the current cursor position.                | `Byte 0`: ASCII, `Byte 1`: Colour                             |
 | Clear Screen | `0x7`   | Reset the screen.                                   | No data                                                      |
 | End of File  | `0xFF`  | End of the binary stream.                           | No data                                                      |
 
@@ -126,14 +132,6 @@ Execute all unit tests:
 ```bash
 opam exec -- dune runtest
 ```
-
-### Development Process
-#### Modular Design
-- Parser Module: Handles the interpretation of binary commands.
-- Commands Module: Validates and executes commands.
-- Renderer Module: Draws to the terminal using the `notty` library.
-#### Test-Driven Development (TDD)
-- Each module is implemented alongside unit tests using the `alcotest` framework.
 
 ## Authors
 Boniface Munga - [Github](https://github.com/MungaSoftwiz) / [X](https://X.com/MungaSoftwiz)
