@@ -36,11 +36,22 @@ let sixteen_palette =
     (* Light Magenta *)
     { r = 255; g = 255; b = 85 };
     (* Yellow *)
-    { r = 128; g = 128; b = 128 };
-    (* Gray *)
+    { r = 255; g = 255; b = 255 };
+    (* White *)
   |]
 
-let two_fifty_six_palette = Array.init 256 (fun i -> { r = i; g = i; b = i })
+let two_fifty_six_palette =
+  Array.init 256 (fun i ->
+      if i < 16 then sixteen_palette.(i)
+      else if i < 232 then
+        let i = i - 16 in
+        let r = i / 36 * 51 in
+        let g = i / 6 mod 6 * 51 in
+        let b = i mod 6 * 51 in
+        { r; g; b }
+      else
+        let v = 8 + ((i - 232) * 10) in
+        { r = v; g = v; b = v })
 
 type screen_state = {
   width : int;
@@ -68,7 +79,6 @@ let screen_buffer = ref [||]
 let get_screen_buffer () = !screen_buffer
 
 let initialize_buffer width height =
-  (* screen_buffer := Array.make_matrix height width 0 *)
   screen_buffer := Array.make_matrix height width (' ', 0)
 
 let parse_colour_mode byte =
@@ -114,7 +124,7 @@ let display_character character colour_index =
       if colour_index < Array.length state.palette then
         let { r; g; b } = monochrome_palette.(colour_index) in
         Printf.printf "\x1b[38;2;%d;%d;%dm%c\x1b[0m" r g b character
-      else Printf.printf "\x1b[38;2;255;255;255m%c\x1b[0m" character
+      else failwith "Invalid colour index supplied"
   | SixteenColours ->
       if colour_index < Array.length sixteen_palette then
         let { r; g; b } = sixteen_palette.(colour_index) in
