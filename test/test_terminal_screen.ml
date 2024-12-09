@@ -4,6 +4,7 @@ open Terminal_screen.Draw_line
 open Terminal_screen.Render_text
 open Terminal_screen.Move_cursor
 open Terminal_screen.Draw_at_cursor
+open Terminal_screen.Clear_screen
 
 let test_setup_screen () =
   let test_data = [| 100; 30; 0x01 |] in
@@ -118,6 +119,25 @@ let test_draw_at_cursor () =
   assert (char_at_other = ' ');
   assert (colour_at_other = 0x00)
 
+let test_clear_screen () =
+  let test_data = [| 100; 30; 0x01 |] in
+  setup_screen test_data;
+
+  draw_character [| 10; 5; 0x01; Char.code 'A' |];
+
+  clear_screen ();
+
+  let screen_buffer = get_screen_buffer () in
+  let state = get_screen_state () in
+
+  for y = 0 to state.height - 1 do
+    for x = 0 to state.width - 1 do
+      let char, colour = screen_buffer.(y).(x) in
+      assert (char = ' ');
+      assert (colour = 0x00)
+    done
+  done
+
 let test_cases =
   [
     ("Test Setup Screen", `Quick, test_setup_screen);
@@ -126,6 +146,7 @@ let test_cases =
     ("Test Render Text", `Quick, test_render_text);
     ("Test Move Cursor", `Quick, test_move_cursor);
     ("Test Draw at Cursor", `Quick, test_draw_at_cursor);
+    ("Test Clear Screen", `Quick, test_clear_screen);
   ]
 
 let () =

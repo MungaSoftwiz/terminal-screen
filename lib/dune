@@ -8,4 +8,5 @@
   Render_text
   Move_cursor
   Draw_at_cursor
+  Clear_screen
   Terminal_screen))
