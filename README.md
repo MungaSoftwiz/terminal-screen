@@ -2,6 +2,17 @@
 
 This project implements a terminal screen renderer using OCaml. It parses a stream of binary-encoded commands and renders graphical characters/text in a terminal. This is achieved by interpreting the commands to setup a virtual screen, draw characters, lines, and text, manipulate the cursor, and clear the screen.
 
+# Project Presentation
+
+Click the link below to watch the project's presentation on YouTube.
+
+<a href="https://www.youtube.com/watch?v=gGwpW5ToJHs" target="blank">
+<p align="center">Watch Project's Video Demo</p>
+<p align="center"></p>
+</a>
+
+![an image of the project's demo on YouTube](assets/images/youtube-demo.png)
+
 ---
 
 ### Below are the links to the proposal and corresponding UML Diagrams:
