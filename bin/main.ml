@@ -51,6 +51,11 @@ let print_instructions command =
         "Clear Screen (Command 0x7):\n\
          - No additional data required.\n\
          - Clears the screen and resets it to the default state\n"
+  | 0xFF ->
+      Printf.printf
+        "End of File (Command 0xFF):\n\
+         - No additional data required.\n\
+         - Marks the end of the binary stream adn exits the program\n"
   | _ -> Printf.printf "Unknown command. Please try again.\n"
 
 (* Function to parse and execute commands *)
@@ -84,6 +89,9 @@ let execute_command command data =
       if Array.length data <> 0 then
         failwith "No data should be provided for clear screen"
       else clear_screen ()
+  | 0xFF ->
+      Printf.printf "End of file reached. Exiting program.\n";
+      exit 0
   | _ -> failwith "Unknown command"
 
 (* Function to display the screen *)
@@ -108,40 +116,37 @@ let rec main () =
     "Enter command:\n\
     \    (0x1 for setup,        0x2 for draw character,   0x3 for draw line, \n\
     \    0x4 for render_text,   0x5 for move cursor,      0x6 for draw at cursor\n\
-    \    0x7 for clear screen,   q to quit):\n";
+    \    0x7 for clear screen,  0xFF for the end of file):\n";
   let input = read_line () in
-  if input = "q" then (
-    Printf.printf "Exiting program.\n";
-    exit 0)
-  else
-    try
-      let command = int_of_string input in
-      print_instructions command;
+  try
+    let command = int_of_string input in
+    print_instructions command;
+    if command = 0xFF then execute_command command [||];
 
-      if command = 0x7 then (
-        clear_screen ();
-        display_screen ();
-        Printf.printf "Screen cleared successfully.\n";
-        main ())
-      else (
-        Printf.printf "Enter data as space-separated integers:\n";
-        Printf.printf "(@) ";
-        let data =
-          read_line () |> String.split_on_char ' ' |> Array.of_list
-          |> Array.map int_of_string
-        in
-        execute_command command data;
+    if command = 0x7 then (
+      clear_screen ();
+      display_screen ();
+      Printf.printf "Screen cleared successfully.\n";
+      main ())
+    else (
+      Printf.printf "Enter data as space-separated integers:\n";
+      Printf.printf "(@) ";
+      let data =
+        read_line () |> String.split_on_char ' ' |> Array.of_list
+        |> Array.map int_of_string
+      in
+      execute_command command data;
 
-        if command <> 0x1 then display_screen ();
-        Printf.printf "Command executed successfully.\n";
-        main ())
-    with
-    | Failure msg ->
-        Printf.printf "Error: %s\n" msg;
-        main ()
-    | _ ->
-        Printf.printf "Invalid input. Please try again.\n";
-        main ()
+      if command <> 0x1 then display_screen ();
+      Printf.printf "Command executed successfully.\n";
+      main ())
+  with
+  | Failure msg ->
+      Printf.printf "Error: %s\n" msg;
+      main ()
+  | _ ->
+      Printf.printf "Invalid input. Please try again.\n";
+      main ()
 
 (* Start the program *)
 let () = main ()
