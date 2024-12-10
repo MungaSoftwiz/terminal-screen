@@ -13,6 +13,10 @@ Click the link below to watch the project's presentation on YouTube.
 
 ![an image of the project's demo on YouTube](assets/images/youtube-demo.png)
 
+# Interview Answers
+
+In addition to the technical aspects of this project, I’ve also answered a few questions in an interview format to provide deeper insights into my computing interests and the person I would most like to meet. You can read the full interview answers [here](./docs/Interview-Answers.pdf).
+
 ---
 
 ### Below are the links to the proposal and corresponding UML Diagrams:
