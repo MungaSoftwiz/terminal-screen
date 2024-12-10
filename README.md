@@ -1,9 +1,10 @@
 # terminal-screen (A Terminal Screen Renderer)
 
-This project implements a terminal screen renderer using OCaml. It parses a stream of binary-encoded commands and renders graphical instructions in a terminal. This is achieved by interpreting the commands to setup a virtual screen, draw characters, lines, and text, manipulate the cursor, and clear the screen.
+This project implements a terminal screen renderer using OCaml. It parses a stream of binary-encoded commands and renders graphical characters/text in a terminal. This is achieved by interpreting the commands to setup a virtual screen, draw characters, lines, and text, manipulate the cursor, and clear the screen.
 
 ---
-### Below are the links to the proposal  and corresponding UML Diagrams:
+
+### Below are the links to the proposal and corresponding UML Diagrams:
 
 ## Project's proposal
 
@@ -38,6 +39,7 @@ This section outlines the progress of the project as of 9/12/2024. Below is the 
 ---
 
 ## Features
+
 - **Screen Setup**: Initialise a virtual terminal screen with customisable dimensions and colour modes.
 - **Draw Characters**: Place individual characters at specific coordinates.
 - **Draw Lines**: Render straight lines between two points with specified characters and colours.
@@ -49,23 +51,25 @@ This section outlines the progress of the project as of 9/12/2024. Below is the 
 ---
 
 ## Binary Command Format
+
 The program processes a binary input with the following structure:
 
-| **Command Byte** | **Length Byte** | **Data Bytes**            |
-|-------------------|-----------------|---------------------------|
-| 1 byte            | 1 byte         | Depends on the command    |
+| **Command Byte** | **Length Byte** | **Data Bytes**         |
+| ---------------- | --------------- | ---------------------- |
+| 1 byte           | 1 byte          | Depends on the command |
 
 ### Command Specifications
-| **Command** | **Code** | **Description**                                     | **Data Format**                                              |
-|-------------|----------|-----------------------------------------------------|--------------------------------------------------------------|
-| Setup Screen | `0x1`   | Initialise screen dimensions and colour mode.        | `Byte 0`: Width, `Byte 1`: Height, `Byte 2`: Colour Mode      |
-| Draw Character | `0x2` | Draw a character at specific coordinates.           | `Byte 0`: x, `Byte 1`: y, `Byte 2`: Colour, `Byte 3`: ASCII   |
-| Draw Line    | `0x3`   | Draw a line between two coordinates.                | `Byte 0-4`: Coordinates, `Byte 5`: Color, `Byte 6`: ASCII    |
-| Render Text  | `0x4`   | Display text starting at a given position.          | `Byte 0-2`: Position & Colour, `Byte 3-n`: ASCII text         |
-| Cursor Move  | `0x5`   | Move cursor to a specific position.                 | `Byte 0`: x, `Byte 1`: y                                     |
-| Draw at Cursor | `0x6` | Draw at the current cursor position.                | `Byte 0`: ASCII, `Byte 1`: Colour                             |
-| Clear Screen | `0x7`   | Reset the screen.                                   | No data                                                      |
-| End of File  | `0xFF`  | End of the binary stream.                           | No data                                                      |
+
+| **Command**    | **Code** | **Description**                               | **Data Format**                                             |
+| -------------- | -------- | --------------------------------------------- | ----------------------------------------------------------- |
+| Setup Screen   | `0x1`    | Initialise screen dimensions and colour mode. | `Byte 0`: Width, `Byte 1`: Height, `Byte 2`: Colour Mode    |
+| Draw Character | `0x2`    | Draw a character at specific coordinates.     | `Byte 0`: x, `Byte 1`: y, `Byte 2`: Colour, `Byte 3`: ASCII |
+| Draw Line      | `0x3`    | Draw a line between two coordinates.          | `Byte 0-4`: Coordinates, `Byte 5`: Color, `Byte 6`: ASCII   |
+| Render Text    | `0x4`    | Display text starting at a given position.    | `Byte 0-2`: Position & Colour, `Byte 3-n`: ASCII text       |
+| Cursor Move    | `0x5`    | Move cursor to a specific position.           | `Byte 0`: x, `Byte 1`: y                                    |
+| Draw at Cursor | `0x6`    | Draw at the current cursor position.          | `Byte 0`: ASCII, `Byte 1`: Colour                           |
+| Clear Screen   | `0x7`    | Reset the screen.                             | No data                                                     |
+| End of File    | `0xFF`   | End of the binary stream.                     | No data                                                     |
 
 ---
 
@@ -96,42 +100,63 @@ terminal-screen/
 ### Prerequisites
 
 ### Installation
+
 1. Clone the repository:
+
 ```bash
-git clone https://github.com/yourusername/terminal_screen.git
-cd terminal_screen
+git clone https://github.com/yourusername/terminal-screen.git
+cd terminal-screen
 ```
 
 2. Install dependencies:
+
 ```bash
-sudo apt get opam
+sudo apt-get install opam
+```
+
+3. Initialise OPAM:
+
+```bash
+opam init
+eval $(opam env)
+```
+
+4. Install project's dependencies:
+
+```bash
 opam install . --deps-only -y
 ```
 
-3. Activate the environment:
+5. Activate the switch (environment):
+
 ```bash
 eval $(opam env)
 ```
 
 ### Build the Program
+
 - To build the program in an executable:
 
 ```bash
-opam exec -- dune build
+make build
 ```
+
 ### Running the Program
+
 - To execute the program:
 
 ```bash
-dune exec terminal_screen_app
+make run
 ```
 
 ### Running Tests
+
 Execute all unit tests:
 
 ```bash
-opam exec -- dune runtest
+make test
 ```
 
 ## Authors
+
 Boniface Munga - [Github](https://github.com/MungaSoftwiz) / [X](https://X.com/MungaSoftwiz)
