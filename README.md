@@ -172,6 +172,16 @@ Execute all unit tests:
 make test
 ```
 
+## References
+
+This project was developed with the help of the following resources:
+
+- [Official OCaml Documentation](https://ocaml.org/docs) for understanding the OCaml language and its standard library.
+- [ANSI Escape Codes Documentation](https://en.wikipedia.org/wiki/ANSI_escape_code) for managing terminal graphics.
+- [Github Gist of ANSI 256 colours](https://gist.github.com/HendrixStringed994b8a57563a9934bb90ca1fae2de5) for a guide to ANSI 256 color codes. Contains a link to Stack Overflow threads on the same.
+- [256 Colour Palette Explainer](https://abouris.github.io/color_explain/) webpage for the colour theory and ANSI color visualisation.
+
+
 ## Authors
 
 Boniface Munga - [Github](https://github.com/MungaSoftwiz) / [X](https://X.com/MungaSoftwiz)
