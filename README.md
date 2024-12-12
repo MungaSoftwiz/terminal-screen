@@ -7,8 +7,7 @@ This project implements a terminal screen renderer using OCaml. It parses a stre
 # Glossary
 
 - [Project Presentation](#project-presentation)
-- [Interview Answers](#interview-answers)
-- [Proposal adn UML Diagrams](#proposal-and-uml-diagrams)
+- [Proposal and UML Diagrams](#proposal-and-uml-diagrams)
 - [Program Overview](#program-overview)
 - [Features](#features)
 - [Getting Started](#getting-started)
@@ -24,10 +23,6 @@ Click the link below to watch the project's presentation on YouTube.
 </a>
 
 ![an image of the project's demo on YouTube](assets/images/youtube-demo.png)
-
-# Interview Answers
-
-In addition to the technical aspects of this project, I’ve also answered a few questions in an interview format to provide deeper insights into my computing interests and the person I would most like to meet. You can read the full interview answers [here](./docs/Interview-Answers.pdf).
 
 ---
 
