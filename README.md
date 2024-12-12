@@ -75,7 +75,7 @@ This project leverages the power of OCaml's functional programming features to c
 
 - **Bresenham's Algorithm**: This project implements Bresenham's line algorithm to draw characters and lines accurately between coordinates. This algorithm is renowned for its efficiency in rendering lines on raster displays, making it ideal for text drawing in terminal screens. Efficiency is achieved using only integer addition, subtraction, and bit shifting to determine which points should be highlighted to form a close approximation to a straight line. Much faster than the floating-point arithmetic method.
 - **ANSI Colours**: To enhance the visual appeal, the project uses ANSI escape codes to handle text colouring and highlighting. This allows for a customisable and visually engaging terminal interface, capable of displaying a wide array of colours and styles.
-- **Functional Programming**: The use of OCaml's functional programming paradigms ensures that the code is concise, expressive, and easy to reason about. Functions are treated as first-class citizens, enabling powerful abstractions and code reusability.
+- **Functional Programming**: The use of OCaml's functional programming paradigms ensures that the code is concise, expressive, and easy to reason about. Functions are treated as first-class citizens, enabling powerful abstractions and code reusability. Check out this page if you want to learn more about [Ocaml's amazing features](https://www2.lib.uchicago.edu/keith/ocaml-class/why.html#:~:text=OCaml%20is%20basically%20as%20fast,static%20typing%20with%20type%20inference.).
 
 # Features
 
