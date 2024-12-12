@@ -117,6 +117,7 @@ let rec main () =
     \    (0x1 for setup,        0x2 for draw character,   0x3 for draw line, \n\
     \    0x4 for render_text,   0x5 for move cursor,      0x6 for draw at cursor\n\
     \    0x7 for clear screen,  0xFF for the end of file):\n";
+  Printf.printf "(@) ";
   let input = read_line () in
   try
     let command = int_of_string input in
