@@ -1,5 +1,7 @@
 # terminal-screen (A Terminal Screen Renderer)
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/MungaSoftwiz/terminal-screen/ci.yml)
+
 This project implements a terminal screen renderer using OCaml. It parses a stream of binary-encoded commands and renders graphical characters/text in a terminal. This is achieved by interpreting the commands to setup a virtual screen, draw characters, lines, and text, manipulate the cursor, and clear the screen.
 
 # Project Presentation
