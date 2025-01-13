@@ -195,7 +195,7 @@ This project was developed with the help of the following resources:
 
 - [Official OCaml Documentation](https://ocaml.org/docs) for understanding the OCaml language and its standard library.
 - [ANSI Escape Codes Documentation](https://en.wikipedia.org/wiki/ANSI_escape_code) for managing terminal graphics.
-- [Github Gist of ANSI 256 colours](https://gist.github.com/HendrixStringed994b8a57563a9934bb90ca1fae2de5) for a guide to ANSI 256 colour codes. Contains a link to Stack Overflow threads on the same.
+- [Github Gist of ANSI 256 colours](https://gist.github.com/HendrixStringed/994b8a57563a9934bb90ca1fae2de5) for a guide to ANSI 256 colour codes. Contains a link to Stack Overflow threads on the same.
 - [256 Colour Palette Explainer](https://abouris.github.io/color_explain/) webpage for the colour theory and ANSI colour visualisation.
 - [Bresenham's Line Drawing Algorithm](https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/) to efficiently draw straight lines between two points on a grid.
 
