@@ -140,29 +140,34 @@ git clone https://github.com/yourusername/terminal-screen.git
 cd terminal-screen
 ```
 
-2. Install dependencies:
+2. Install opam package manager:
 
 ```bash
 sudo apt-get install opam
 ```
 
-3. Initialise OPAM:
+3. Initialize OPAM:
 
 ```bash
 opam init
+```
+
+4. Create a local switch (recommended for project isolation):
+
+```bash
+opam switch create . ocaml-base-compiler.5.2.0
+```
+
+5. Activate the local switch (environment):
+
+```bash
 eval $(opam env)
 ```
 
-4. Install project's dependencies:
+6. Install dependencies:
 
 ```bash
 opam install . --deps-only -y
-```
-
-5. Activate the switch (environment):
-
-```bash
-eval $(opam env)
 ```
 
 ### Build the Program
