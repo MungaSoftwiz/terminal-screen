@@ -17,16 +17,19 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up OCaml
-        uses: avsm/setup-ocaml@v2
-        with:
-          ocaml-compiler: "5.2.0"
-          opam-depext: true
+      - name: Install OCaml and Opam
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y opam ocaml ocaml-native-compilers ocaml-compiler-libs build-essential m4
+
+      - name: Initialize Opam
+        run: |
+          opam init --disable-sandboxing -y
+          opam switch create 5.2.0
+          eval $(opam env --switch=5.2.0)
 
       - name: Install Dependencies
-        run: |
-          opam install . --deps-only -y
-          eval $(opam env)
+        run: opam install . --deps-only -y
 
       - name: Build Project
         run: opam exec -- dune build
